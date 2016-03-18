@@ -14,7 +14,8 @@ ZSH_THEME="af-magic"
 
 # Disable auto-update?
 DISABLE_AUTO_UPDATE="false"
-
+# Dont ask me just update....
+DISABLE_UPDATE_PROMPT=true
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
 
