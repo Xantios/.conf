@@ -1,6 +1,12 @@
 # .conf
 Just some config files for you happy linux hackers
 
+Installation
+--------
+
+Copy/paste install :-)
+``sh -c "(wget https://raw.githubusercontent.com/xantios/.conf/master/bootstrap.sh -O -)"``
+
 Shell config
 ---------
 
