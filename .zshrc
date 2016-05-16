@@ -157,6 +157,26 @@ func newlara()
 #alias rabbit="/usr/local/opt/rabbitmq/sbin/rabbitmq-server"
 #alias mongol="mongod --config /usr/local/etc/mongod.conf"
 
+# Just a quick and dirty overview of running virtualmachines 
+func vblist()
+{
+    VBoxManage list vms | cut -d{ -f1 | tr -d '"' > /tmp/vbox_list
+    VBoxManage list runningvms | cut -d{ -f1 | tr -d '"' > /tmp/vbox_runlist
+    TOTAL=`cat /tmp/vbox_list | wc -l | tr -d "[:space:]" | tr -d "\n"`
+    RUN=`cat /tmp/vbox_runlist | wc -l | tr -d "[:space:]" | tr -d "\n"`
+
+    echo --- Registered VMs \(${TOTAL}\)
+    echo ---------------------------------
+    echo
+    grep -Fxv -f /tmp/vbox_runlist /tmp/vbox_list
+    echo
+    echo --- Running VMs \($RUN\)
+    echo ---------------------------------
+    echo
+    cat /tmp/vbox_runlist
+    echo
+}
+
 # Hidden files?
 func showhidden()
 {
