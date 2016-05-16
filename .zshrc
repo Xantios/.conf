@@ -177,6 +177,37 @@ func vblist()
     echo
 }
 
+# DNSMasq
+func masq()
+{
+    # Chicken out if there is a existing config
+    if [ -e /usr/local/opt/dnsmasq/dnsmasq.conf ];
+    then
+        echo Found existing config, running DNSMasq
+        sudo /usr/local/opt/dnsmasq/sbin/dnsmasq -d -q -C /usr/local/opt/dnsmasq/dnsmasq.conf
+        exit # To prevent script from running allong and ruining your config 
+    fi
+    
+    # Write dev resolver to DNSMasq config
+    sudo echo "address=/dev/192.168.10.10" > /usr/local/opt/dnsmasq/dnsmasq.conf
+    
+    # place to store resolvers
+    sudo mkdir -p /etc/resolver 
+
+    # dot dev registration please bob :-)
+    #sudo tee /etc/resolver/dev > /dev/null <<EOF
+    #    nameserver 127.0.0.1
+    #EOF
+    echo "nameserver 127.0.0.1" > /dev/resolver/dev
+
+    # Run DNSMasq
+    # -d for no-daemon
+    # -q for log querys
+    # -C for config file 
+    sudo /usr/local/opt/dnsmasq/sbin/dnsmasq -d -q -C /usr/local/opt/dnsmasq/dnsmasq.conf
+
+}
+
 # Hidden files?
 func showhidden()
 {
