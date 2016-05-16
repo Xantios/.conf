@@ -57,6 +57,8 @@ plugins=(git)
 
 # Composaaah
 export PATH=$PATH:~/.composer/vendor/bin
+# MySQL utils etc are in my MAMP install
+export PATH=$PATH:/Applications/MAMP/Library/bin
 
 # Source the init to start oh-my-zsh on spin-up
 source $ZSH/oh-my-zsh.sh
@@ -96,7 +98,11 @@ alias vimconf='vim ~/.vimrc'
 # Shortcuts
 alias tmp="cd ~/temp"
 alias temp="cd ~/temp"
-alias proj="cd ~/Dropbox/Projects"
+#alias proj="cd ~/Dropbox/Projects"
+alias proj="cd ~/Projects"
+
+# Im really lazy
+alias vihost='sudo vi /etc/hosts'
 
 # New homestead based project
 # Just type name of function in shell to execute it.
@@ -106,8 +112,9 @@ func newhomestead()
     PWD=`pwd`
     # Grep last part of dir for projectname
     PROJNAME=`basename $PWD`
-    # Projname.app is a swifty hostname
-    PROJHOST=$PROJNAME.app
+    # Projname.dev is a swifty hostname
+    # Google apperantly bought the rights to dot-app >.> grrr
+    PROJHOST=$PROJNAME.dev
     # just for consistency
     PROJHOST=`echo "$PROJHOST" | awk '{print tolower($0)}'`
     echo Downloading homestead base package
@@ -119,18 +126,21 @@ func newhomestead()
     sed -i '' "s/homestead.app/$PROJHOST/g" homestead.yaml
     # Mod path a bit so we can stick everything into one folder
     sed -i '' "s/public/$PROJNAME\/public/g" homestead.yaml
-    #vagrant up
+    # Collect IP data 
     HOMESIP=`cat Homestead.yaml | grep ip | cut -d\" -f2`
-    # @TODO: Find a way to echo this to hostfile 
-    # echo $HOMESIP $PROJHOST
     echo Done.
     echo 
     echo Add the following line to hostfile:
     echo $HOMESIP $PROJHOST
     echo
-    echo 'Install laravel? run newlara command'
-
+    echo Or setup DNSMasq 
+    echo https://passingcuriosity.com/2013/dnsmasq-dev-osx/
+    echo
+    echo Now run vagrant up
+    echo 
+    echo Install laravel? run newlara command
 }
+
 # Same story as above
 func newlara()
 {
@@ -146,6 +156,20 @@ func newlara()
 # Instant running services for OS X
 #alias rabbit="/usr/local/opt/rabbitmq/sbin/rabbitmq-server"
 #alias mongol="mongod --config /usr/local/etc/mongod.conf"
+
+# Hidden files?
+func showhidden()
+{
+    defaults write com.apple.finder AppleShowAllFiles TRUE
+    echo killall Finder     to kill finder
+}
+
+func hidehidden()
+{
+    defaults write com.apple.finder AppleShowAllFiles FALSE
+    echo killall Finder    to kill finder
+    
+}
 
 # Load iTerm2 hooks for integration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
