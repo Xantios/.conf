@@ -1,6 +1,9 @@
 # Path to your oh-my-zsh installation.
 export ZSH=${HOME}/.oh-my-zsh
 
+# Overload old versions of PHP 
+export PATH="$(brew --prefix homebrew/php/php71)/bin:$PATH"
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 ZSH_THEME="af-magic"
@@ -53,10 +56,13 @@ ENABLE_CORRECTION="false"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git docker nyan sudo)
 
 # Composaaah
 export PATH=$PATH:~/.composer/vendor/bin
+
+alias cda="composer dumpautoload"
+
 # MySQL utils etc are in my MAMP install
 export PATH=$PATH:/Applications/MAMP/Library/bin
 
@@ -93,8 +99,19 @@ export NPM_TOKEN=`cat ~/.npmrc  | cut -d= -f2`
 export NVM_DIR="$HOME/.nvm"
 . "/usr/local/opt/nvm/nvm.sh"
 
+# Homestead
+function homestead() {
+    ( cd ~/Homestead && vagrant $* )
+}
+
+vihomestead() {
+    vi $HOME/.homestead/homestead.yaml
+    cd $HOME/Homestead ; vagrant provision
+}
+
 # the tilde key on NL keyboards are hard to reach. wrap a alias arround to (re)load config 
 alias rehash='. ~/.zshrc'
+
 # And while were at it
 alias zshconf='vim ~/.zshrc'
 alias vimconf='vim ~/.vimrc'
@@ -102,11 +119,26 @@ alias vimconf='vim ~/.vimrc'
 # Shortcuts
 alias tmp="cd ~/temp"
 alias temp="cd ~/temp"
+
 #alias proj="cd ~/Dropbox/Projects"
-alias proj="cd ~/Projects"
+#alias proj="cd ~/Projects"
+
+alias proj=projfunc
+func projfunc() {
+#    cd ~/Projects/$@
+cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/Projects/$@
+}
+
+alias serve="ionic serve -bcls"
 
 # Im really lazy
 alias vihost='sudo vi /etc/hosts'
+
+# And have a bad memory 
+alias highlight=highlightfunc
+highlightfunc() {
+ less -p '$@' -i
+}
 
 # New homestead based project
 # Just type name of function in shell to execute it.
@@ -199,7 +231,7 @@ func masq()
     sudo mkdir -p /etc/resolver 
 
     # dot dev registration please bob :-)
-    #sudo tee /etc/resolver/dev > /dev/null <<EOF
+#sudo tee /etc/resolver/dev > /dev/null <<EOF
     #    nameserver 127.0.0.1
     #EOF
     echo "nameserver 127.0.0.1" > /dev/resolver/dev
@@ -224,6 +256,10 @@ func hidehidden()
     defaults write com.apple.finder AppleShowAllFiles FALSE
     echo killall Finder    to kill finder
     
+}
+
+func pass() {
+    openssl rand -base64 24 | cut -d= -f1
 }
 
 # Load iTerm2 hooks for integration
