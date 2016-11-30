@@ -93,7 +93,9 @@ fi
 #
 
 # For al you nodeJS hipsters out there
-export NPM_TOKEN=`cat ~/.npmrc  | cut -d= -f2`
+if [ -f ~/.npmrc ]; then
+    export NPM_TOKEN=`cat ~/.npmrc  | cut -d= -f2`
+fi
 
 # And for NVM
 export NVM_DIR="$HOME/.nvm"
