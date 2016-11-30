@@ -89,6 +89,10 @@ fi
 # For al you nodeJS hipsters out there
 export NPM_TOKEN=`cat ~/.npmrc  | cut -d= -f2`
 
+# And for NVM
+export NVM_DIR="$HOME/.nvm"
+. "/usr/local/opt/nvm/nvm.sh"
+
 # the tilde key on NL keyboards are hard to reach. wrap a alias arround to (re)load config 
 alias rehash='. ~/.zshrc'
 # And while were at it
