@@ -58,12 +58,14 @@ ENABLE_CORRECTION="false"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git docker nyan sudo)
 
-# Composaaah
+# Composah
 export PATH=$PATH:~/.composer/vendor/bin
 
+# i run this command a lot 
 alias cda="composer dumpautoload"
 
 # MySQL utils etc are in my MAMP install
+# feel free to substite your own
 export PATH=$PATH:/Applications/MAMP/Library/bin
 
 # Source the init to start oh-my-zsh on spin-up
@@ -86,12 +88,6 @@ fi
 # ssh
 #export SSH_KEY_PATH="~/.ssh/dsa_id"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-
 # For al you nodeJS hipsters out there
 if [ -f ~/.npmrc ]; then
     export NPM_TOKEN=`cat ~/.npmrc  | cut -d= -f2`
@@ -101,11 +97,12 @@ fi
 export NVM_DIR="$HOME/.nvm"
 . "/usr/local/opt/nvm/nvm.sh"
 
-# Homestead
+# Homestead recomedation
 function homestead() {
     ( cd ~/Homestead && vagrant $* )
 }
 
+# Personal pref.
 vihomestead() {
     vi $HOME/.homestead/homestead.yaml
     cd $HOME/Homestead ; vagrant provision
@@ -125,22 +122,18 @@ alias temp="cd ~/temp"
 #alias proj="cd ~/Dropbox/Projects"
 #alias proj="cd ~/Projects"
 
+# Usage: proj <projectname>
 alias proj=projfunc
 func projfunc() {
-#    cd ~/Projects/$@
-cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/Projects/$@
+    #cd ~/Projects/$@
+    cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/Projects/$@
 }
 
+# Starts ionic server without opening up a new browser
 alias serve="ionic serve -bcls"
 
-# Im really lazy
+# You could use dnsmasq to ;-)
 alias vihost='sudo vi /etc/hosts'
-
-# And have a bad memory 
-alias highlight=highlightfunc
-highlightfunc() {
- less -p '$@' -i
-}
 
 # New homestead based project
 # Just type name of function in shell to execute it.
