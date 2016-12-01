@@ -63,7 +63,8 @@ export PATH=$PATH:~/.composer/vendor/bin
 
 # i run this command a lot 
 alias cda="composer dumpautoload"
-
+# and this one to
+alias art="php artisan "
 # MySQL utils etc are in my MAMP install
 # feel free to substite your own
 export PATH=$PATH:/Applications/MAMP/Library/bin
