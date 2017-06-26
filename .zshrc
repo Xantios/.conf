@@ -53,9 +53,16 @@ alias ionx="open ./platforms/ios/*.xcodeproj" # Open current ionic project in xC
 alias vihost='sudo vi /etc/hosts' 
 
 # Check if /usr/local/bin/pstorm exists
-alias storm="phpstorm ."  # Open current folder in php storm
+# Update: binary in newer versions in called pstorm
+if [ -f '/usr/local/bin/phpstorm' ]; then 
+    alias storm="phpstorm ."  # Open current folder in php storm
+fi
 
-alias proj=projfunc 
+if [ -f '/usr/local/bin/pstorm' ]; then
+    alias storm="pstorm ."  # Open current folder in php storm
+fi
+
+
 alias vms=vblist
 alias pwgen=pass # or just use pass 
 
