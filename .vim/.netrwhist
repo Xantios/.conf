@@ -1,7 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_cnt =6
 let g:netrw_dirhist_1='/Users/xantios/.oh-my-zsh/plugins/git'
 let g:netrw_dirhist_2='/Users/xantios/Projects/meta-erp/vendor/kaiser/Core/src/Http/Controllers'
 let g:netrw_dirhist_3='/Users/xantios/Library/Mobile Documents/com~apple~CloudDocs/Projects/payingit'
 let g:netrw_dirhist_4='/Users/xantios/Library/Mobile Documents/com~apple~CloudDocs/Projects/Current/VDM/MobileApp/plugins/cordova-plugin-indexedDB/www'
 let g:netrw_dirhist_5='/usr/local/Cellar/nginx/1.10.3/share/man'
+let g:netrw_dirhist_6='/Users/xantios/Projects/current/MediaBot/app'
