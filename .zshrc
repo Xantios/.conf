@@ -62,7 +62,7 @@ if [ -f '/usr/local/bin/pstorm' ]; then
     alias storm="pstorm ."  # Open current folder in php storm
 fi
 
-
+alias proj=projfunc
 alias vms=vblist
 alias pwgen=pass # or just use pass 
 
