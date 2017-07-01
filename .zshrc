@@ -69,6 +69,12 @@ alias pwgen=pass # or just use pass
 # Source the init to start oh-my-zsh on spin-up
 source $ZSH/oh-my-zsh.sh
 
+# If you have .zshrc.local file we source it so you can put some password in enviroment 
+# or do some local addons if needed
+if [ -f $HOME/.zshrc.local ]; then
+    source $HOME/.zshrc.local
+fi
+
 ##########################################################
 # Export some tokens and vars
 ##########################################################
