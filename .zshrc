@@ -5,7 +5,16 @@ export ZSH=${HOME}/.oh-my-zsh
 ZSH_THEME="af-magic"
 
 # Disable auto-update?
-DISABLE_AUTO_UPDATE="false"
+# Testing a performance update 
+DISABLE_AUTO_UPDATE="true"
+
+# History can take a second or 2 to load
+# Just a small performance update
+HISTSIZE=1000
+SAVEHIST=1000
+
+# And a litle bugfix
+skip_global_compinit=1
 
 # Dont ask me just update....
 DISABLE_UPDATE_PROMPT=true
@@ -16,7 +25,7 @@ unsetopt correct
 ENABLE_CORRECTION="false"
 
 # Pull in some plugins
-plugins=(git docker nyan sudo)
+plugins=(git)
 
 # We need to set editor because we depend on it in the next blocks
 export EDITOR='vim'
@@ -71,8 +80,10 @@ if [ -f ~/.npmrc ]; then
 fi
 
 # NVM 
+# Sourcing makes the startup sequence slow, so maybe you want an alias ?
 export NVM_DIR="$HOME/.nvm"
-. "/usr/local/opt/nvm/nvm.sh"
+ . "/usr/local/opt/nvm/nvm.sh"
+#alias loadnvm=". /usr/local/opt/nvm/nvm.sh"
 
 function homestead() {
     ( cd ~/Homestead && vagrant $* )
