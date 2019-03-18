@@ -6,32 +6,7 @@ export ZSH=${HOME}/.oh-my-zsh
 ZSH_THEME="powerlevel9k/powerlevel9k"
 
 # 9k specific mods
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status context)
-
-# Set colors for 9k
-# To figure out color codes run:
-#for code ({000..255}) print -P -- "$code: %F{$code}This is how your text would look like%f"
-
-POWERLEVEL9K_STATUS_FOREGROUND='234'
-POWERLEVEL9K_STATUS_BACKGROUND='0'
-
-POWERLEVEL9K_DIR_FOREGROUND='234'
-
-POWERLEVEL9K_LOAD_CRITICAL_BACKGROUND="black"
-POWERLEVEL9K_LOAD_CRITICAL_FOREGROUND="white"
-POWERLEVEL9K_LOAD_WARNING_BACKGROUND="black"
-POWERLEVEL9K_LOAD_WARNING_FOREGROUND="white"
-POWERLEVEL9K_LOAD_NORMAL_BACKGROUND="black"
-POWERLEVEL9K_LOAD_NORMAL_FOREGROUND="white"
-
-POWERLEVEL9K_DIR_HOME_FOREGROUND="white"
-POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND="white"
-POWERLEVEL9K_DIR_DEFAULT_FOREGROUND="white"
-
-POWERLEVEL9K_DIR_DEFAULT_BACKGROUND="black"
-POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND="black"
-POWERLEVEL9K_DIR_HOME_BACKGROUND="black"
+. $HOME/.conf/.powerlevel
 
 # Disable auto-update?
 DISABLE_AUTO_UPDATE="false"
@@ -45,7 +20,7 @@ unsetopt correct
 ENABLE_CORRECTION="false"
 
 # Pull in some plugins
-plugins=(git docker nyan sudo zsh-autosuggestions)
+plugins=(git docker sudo zsh-autosuggestions)
 
 # We need to set editor because we depend on it in the next blocks
 export EDITOR='vim'
@@ -61,8 +36,10 @@ DEFAULT_USER=`whoami`
 # Export paths 
 ##########################################################
 export PATH=$PATH:~/.composer/vendor/bin # Composer
-export PATH=$PATH:~/.android/dev/ # Android Dev kit
+
 export PATH=$PATH:/usr/local/mysql/bin # MySQL
+# export PATH=$PATH:~/.android/dev/ # Android Dev kit
+
 PATH="/usr/local/opt/inetutils/libexec/gnubin:$PATH" # Add for inetutils (ftp, telnet in OS  (brew install inetutils)) 
 
 ##########################################################
@@ -70,19 +47,20 @@ PATH="/usr/local/opt/inetutils/libexec/gnubin:$PATH" # Add for inetutils (ftp, t
 ##########################################################
 alias cda="composer dumpautoload" 
 alias art="php artisan "
-
-alias php55="/Applications/MAMP/bin/php/php5.5.38/bin/php"
+#alias php55="/Applications/MAMP/bin/php/php5.5.38/bin/php"
 
 alias dnsreset="sudo killall -HUP mDNSResponder" # Reload DNS on a Mac
 
 alias rehash='. ~/.zshrc' # Reload ZSH
-alias zshconf='$EDITOR ~/.zshrc' # Edit zshrc
-alias vimconf='$EDITOR ~/.vimrc' # edit vimrc
+
+#alias zshconf='$EDITOR ~/.zshrc' # Edit zshrc
+#alias vimconf='$EDITOR ~/.vimrc' # edit vimrc
 
 alias tmp="cd ~/temp" # I just use a temp dir to dump stuff in my home folder 
+alias notes="cd ~/notes" # I really should find a notes app i like one of these days. 
 
-alias serve="ionic serve -csab" # Ionic server
-alias ionx="open ./platforms/ios/*.xcodeproj" # Open current ionic project in xCode 
+#alias serve="ionic serve -csab" # Ionic server
+#alias ionx="open ./platforms/ios/*.xcodeproj" # Open current ionic project in xCode 
 
 alias vihost='sudo vi /etc/hosts' 
 
@@ -91,16 +69,21 @@ alias storm="pstorm ."  # Open current folder in php storm
 alias s="pstorm ."  # Open current folder in php storm
 
 alias proj=projfunc
-alias vms=vblist
 alias pwgen=pass # or just use pass 
-#alias dokku='bash $HOME/.dokku/contrib/dokku_client.sh'
 
-alias redis="redis-server /usr/local/etc/redis.conf"
+#alias dokku='bash $HOME/.dokku/contrib/dokku_client.sh'
+#alias redis="redis-server /usr/local/etc/redis.conf"
+
+alias dockerize="~/Projects/current/dockerize/bin/console dockerize"
+alias de="docker exec -ti "
+alias enter="~/enter"
+
+alias dockly="docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock lirantal/dockly"
 
 # Source the init to start oh-my-zsh on spin-up
 source $ZSH/oh-my-zsh.sh
 
-# If you have .zshrc.local file we source it so you can put some password in enviroment 
+# If you have .zshrc.local file we source it so you can put some passwords in enviroment 
 # or do some local addons if needed
 if [ -f $HOME/.zshrc.local ]; then
     source $HOME/.zshrc.local
@@ -175,3 +158,4 @@ func pass() {
 # As a final touch
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"

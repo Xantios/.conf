@@ -22,6 +22,15 @@ cd
 git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 mv .zshrc .zshrc.org
 
+# Get Powerlevel 9K
+git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+
+# Get zsh-autosuggestions
+git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
+
+# Install syntax highlighter
+brew install zsh-syntax-highlighting
+
 # Get my confs
 mv .conf .conf.bak
 git clone https://github.com/Xantios/.conf.git
