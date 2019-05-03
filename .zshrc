@@ -36,10 +36,8 @@ DEFAULT_USER=`whoami`
 # Export paths 
 ##########################################################
 export PATH=$PATH:~/.composer/vendor/bin # Composer
-
 export PATH=$PATH:/usr/local/mysql/bin # MySQL
 # export PATH=$PATH:~/.android/dev/ # Android Dev kit
-
 PATH="/usr/local/opt/inetutils/libexec/gnubin:$PATH" # Add for inetutils (ftp, telnet in OS  (brew install inetutils)) 
 
 ##########################################################
@@ -78,7 +76,8 @@ alias dockerize="~/Projects/current/dockerize/bin/console dockerize"
 alias de="docker exec -ti "
 alias enter="~/enter"
 
-alias dockly="docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock lirantal/dockly"
+#alias dockly="docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock lirantal/dockly"
+alias portainer="$HOME/Projects/current/portainer/start.sh"
 
 # Source the init to start oh-my-zsh on spin-up
 source $ZSH/oh-my-zsh.sh
