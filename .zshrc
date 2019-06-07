@@ -20,7 +20,10 @@ unsetopt correct
 ENABLE_CORRECTION="false"
 
 # Pull in some plugins
-plugins=(git docker sudo zsh-autosuggestions)
+plugins=(git docker sudo)
+
+# Add zsh-autosuggestions to plugins array should work, but brew-dev on OS X 10.15 seems to have changed --something--
+. /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # We need to set editor because we depend on it in the next blocks
 export EDITOR='vim'
@@ -99,7 +102,9 @@ fi
 
 # NVM 
 export NVM_DIR="$HOME/.nvm"
-. "/usr/local/opt/nvm/nvm.sh"
+if [[ -f NVM_DIR/nvm.sh ]]; then
+    . "/usr/local/opt/nvm/nvm.sh"
+fi
 
 function homestead() {
     ( cd ~/Homestead && vagrant $* )
