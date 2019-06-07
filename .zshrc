@@ -14,16 +14,19 @@ DISABLE_AUTO_UPDATE="false"
 # Dont ask me just update....
 DISABLE_UPDATE_PROMPT=true
 
-# The "Did you mean $this" function is really annoying, lets hack it out
+# The "Did you mean <whatever>" function is really annoying, lets hack it out
 unsetopt correct_all
 unsetopt correct
 ENABLE_CORRECTION="false"
 
 # Pull in some plugins
-plugins=(git docker sudo)
+plugins=(git docker)
 
 # Add zsh-autosuggestions to plugins array should work, but brew-dev on OS X 10.15 seems to have changed --something--
 . /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# And add some syntax highlighting
+. /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # We need to set editor because we depend on it in the next blocks
 export EDITOR='vim'
@@ -32,55 +35,49 @@ export EDITOR='vim'
 export LANG=en_US.UTF-8
 #export LANG=C
 
-# I know my own hostname
+# Pull current user to var
 DEFAULT_USER=`whoami`
 
 ##########################################################
 # Export paths 
 ##########################################################
-export PATH=$PATH:~/.composer/vendor/bin # Composer
-export PATH=$PATH:/usr/local/mysql/bin # MySQL
-# export PATH=$PATH:~/.android/dev/ # Android Dev kit
-PATH="/usr/local/opt/inetutils/libexec/gnubin:$PATH" # Add for inetutils (ftp, telnet in OS  (brew install inetutils)) 
+#export PATH=$PATH:~/.composer/vendor/bin    # Composer
+#export PATH=$PATH:/usr/local/mysql/bin      # MySQL
+export PATH=$PATH:/usr/local/opt/inetutils/libexec/gnubin # inet-utils (brew install inetutils)
 
 ##########################################################
 # Aliases 
 ##########################################################
+
+# PHP Dev stuff
 alias cda="composer dumpautoload" 
 alias art="php artisan "
-#alias php55="/Applications/MAMP/bin/php/php5.5.38/bin/php"
+alias storm="pstorm ."  # Open current folder in php storm
 
-alias dnsreset="sudo killall -HUP mDNSResponder" # Reload DNS on a Mac
-
-alias rehash='. ~/.zshrc' # Reload ZSH
-
-#alias zshconf='$EDITOR ~/.zshrc' # Edit zshrc
-#alias vimconf='$EDITOR ~/.vimrc' # edit vimrc
-
+# General Dev stuff ( General Dev-stuff , Salutes ! )
 alias tmp="cd ~/temp" # I just use a temp dir to dump stuff in my home folder 
 alias notes="cd ~/notes" # I really should find a notes app i like one of these days. 
 
-#alias serve="ionic serve -csab" # Ionic server
-#alias ionx="open ./platforms/ios/*.xcodeproj" # Open current ionic project in xCode 
+# MacOS being a dick
+alias dnsreset="sudo killall -HUP mDNSResponder" # Reload DNS on a Mac
 
-alias vihost='sudo vi /etc/hosts' 
-
-# /usr/local/bin/pstorm
-alias storm="pstorm ."  # Open current folder in php storm
-alias s="pstorm ."  # Open current folder in php storm
-
-alias proj=projfunc
+# Me being lazy
 alias pwgen=pass # or just use pass 
 
-#alias dokku='bash $HOME/.dokku/contrib/dokku_client.sh'
-#alias redis="redis-server /usr/local/etc/redis.conf"
+# Shell hacking stuff
+alias rehash='. ~/.zshrc' # Reload ZSH
+
+alias zshconf='$EDITOR ~/.zshrc' # Edit zshrc
+alias vimconf='$EDITOR ~/.vimrc' # Edit vimrc
+alias vihost='sudo vi /etc/hosts' # Edit hostfile
+
+alias proj=projfunc
 
 alias dockerize="~/Projects/current/dockerize/bin/console dockerize"
-alias de="docker exec -ti "
-alias enter="~/enter"
 
-#alias dockly="docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock lirantal/dockly"
-alias portainer="$HOME/Projects/current/portainer/start.sh"
+# Shoud fix this up to something somewhat decent
+#alias de="docker exec -ti "
+#alias enter="~/enter"
 
 # Source the init to start oh-my-zsh on spin-up
 source $ZSH/oh-my-zsh.sh
@@ -106,38 +103,9 @@ if [[ -f NVM_DIR/nvm.sh ]]; then
     . "/usr/local/opt/nvm/nvm.sh"
 fi
 
-function homestead() {
-    ( cd ~/Homestead && vagrant $* )
-}
-
-vihomestead() {
-    vi $HOME/.homestead/homestead.yaml
-    cd $HOME/Homestead ; vagrant provision
-}
-
 func projfunc() {
     cd ~/Projects/current/$@
-    #cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/Projects/$@
 }
-
-# Just a quick and dirty overview of running virtualmachines 
-func vblist()
-{
-    ALL=`VBoxManage list vms | cut -d{ -f1 | tr -d '"'`
-    RUNNING=`VBoxManage list runningvms | cut -d{ -f1 | tr -d '"'`
-    TOTAL=`echo $ALL | wc -l | tr -d "[:space:]" | tr -d "\n"`
-    RUN=`echo $RUNNING | wc -l | tr -d "[:space:]" | tr -d "\n"`
-
-    echo --- Registered VMs \(${TOTAL}\)
-    echo
-    echo $ALL
-    echo
-    echo --- Running VMs \($RUN\)
-    echo
-    echo $RUNNING
-    echo
-}
-
 
 # Show hidden files
 func showhidden()
@@ -158,8 +126,5 @@ func hidehidden()
 func pass() {
     openssl rand -base64 24 | cut -d= -f1
 }
-
-# As a final touch
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
