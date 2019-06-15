@@ -99,12 +99,12 @@ fi
 
 # NVM 
 export NVM_DIR="$HOME/.nvm"
-if [[ -f NVM_DIR/nvm.sh ]]; then
-    . "/usr/local/opt/nvm/nvm.sh"
-fi
+
+[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+[ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
 
 func projfunc() {
-    cd ~/Projects/current/$@
+    cd ~/Projects/$@
 }
 
 # Show hidden files
