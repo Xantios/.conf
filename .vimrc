@@ -113,3 +113,7 @@ nmap <leader>lc :e composer.json<cr>
 nmap vs :vsplit<cr>
 nmap sp :split<cr>
 
+" Add yaml, because im a hipster ! 
+" Feel free to add https://github.com/mrk21/yaml-vim on your own, if you need it
+au! BufNewFile,BufReadPost *.{yaml,yml} set filetype=yaml
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
