@@ -23,10 +23,12 @@ git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 mv .zshrc .zshrc.org
 
 # Get Powerlevel 9K
-git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+# git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+# Get Powerlevel 10k
+git clone https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/themes/powerlevel10k
 
 # Get zsh-autosuggestions
-git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
+git://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/themes/plugins/zsh-autosuggestions
 
 # Install syntax highlighter
 brew install zsh-syntax-highlighting

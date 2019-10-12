@@ -3,7 +3,8 @@ export ZSH=${HOME}/.oh-my-zsh
 
 # Set name of the theme to load.
 #ZSH_THEME="af-magic"
-ZSH_THEME="powerlevel9k/powerlevel9k"
+#ZSH_THEME="powerlevel9k/powerlevel9k"
+ZSH_THEME=powerlevel10k/powerlevel10k
 
 # 9k specific mods
 . $HOME/.conf/.powerlevel
