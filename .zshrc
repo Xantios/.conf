@@ -20,7 +20,7 @@ unsetopt correct
 ENABLE_CORRECTION="false"
 
 # Pull in some plugins
-plugins=(git docker)
+plugins=(git docker zsh-nvm)
 
 # Add zsh-autosuggestions to plugins array should work, but brew-dev on OS X 10.15 seems to have changed --something--
 . /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -73,7 +73,9 @@ alias vihost='sudo vi /etc/hosts' # Edit hostfile
 
 alias proj=projfunc
 
+# Docker stuff
 alias dockerize="~/Projects/current/dockerize/bin/console dockerize"
+alias enter="php ~/enter.php $@"
 
 # Shoud fix this up to something somewhat decent
 #alias de="docker exec -ti "
@@ -100,8 +102,12 @@ fi
 # NVM 
 export NVM_DIR="$HOME/.nvm"
 
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
+# [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+# [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
+
+# Switch over to zsh-nvm plugin
+# git clone https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm
+# add add it to plugins ( plugins+=(zsh-nvm) )
 
 func projfunc() {
     cd ~/Projects/$@
