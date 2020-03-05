@@ -42,7 +42,7 @@ DEFAULT_USER=`whoami`
 ##########################################################
 # Export paths 
 ##########################################################
-#export PATH=$PATH:~/.composer/vendor/bin    # Composer
+export PATH=$PATH:~/.composer/vendor/bin    # Composer
 #export PATH=$PATH:/usr/local/mysql/bin      # MySQL
 export PATH=$PATH:/usr/local/opt/inetutils/libexec/gnubin # inet-utils (brew install inetutils)
 
@@ -76,7 +76,7 @@ alias proj=projfunc
 
 # Docker stuff
 alias dockerize="~/Projects/current/dockerize/bin/console dockerize"
-alias enter="php ~/enter.php $@"
+# alias enter="php ~/enter.php $@" # Moved to a seperate repo, see github.com/xantios/docker-helper
 
 # Shoud fix this up to something somewhat decent
 #alias de="docker exec -ti "
