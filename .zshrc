@@ -2,8 +2,11 @@
 export ZSH=${HOME}/.oh-my-zsh
 
 # Set name of the theme to load.
-#ZSH_THEME="af-magic"
-#ZSH_THEME="powerlevel9k/powerlevel9k"
+
+# Not super fancy, but usefull
+#ZSH_THEME="af-magic" 
+
+# Full fancy
 ZSH_THEME=powerlevel10k/powerlevel10k
 
 # 9k specific mods
@@ -21,10 +24,10 @@ unsetopt correct
 ENABLE_CORRECTION="false"
 
 # Pull in some plugins
-plugins=(git docker zsh-nvm)
+plugins=(git docker zsh-nvm zsh-autosuggestions)
 
 # Add zsh-autosuggestions to plugins array should work, but brew-dev on OS X 10.15 seems to have changed --something--
-. /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# . /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # And add some syntax highlighting
 . /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

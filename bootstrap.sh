@@ -22,13 +22,11 @@ cd
 git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 mv .zshrc .zshrc.org
 
-# Get Powerlevel 9K
-# git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
 # Get Powerlevel 10k
-git clone https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/themes/powerlevel10k
+git clone https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
 
 # Get zsh-autosuggestions
-git://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/themes/plugins/zsh-autosuggestions
+git clone git://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 
 # Install syntax highlighter
 brew install zsh-syntax-highlighting
@@ -39,8 +37,6 @@ git clone https://github.com/Xantios/.conf.git
 
 # Link stuff up :-)
 ln -s .conf/.zshrc ./.zshrc
-
 ln -s .conf/.vimrc ./.vimrc
 ln -s .conf/.vim ./.vim
-
 ln -s .conf/.tmux.conf ./.tmux.conf
