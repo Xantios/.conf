@@ -11,12 +11,8 @@ Copy/paste install :-)
 Dependencies
 ---------
 - Zsh
-- git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
 - This font: https://github.com/powerline/fonts/blob/master/Meslo%20Slashed/Meslo%20LG%20M%20Regular%20for%20Powerline.ttf
-- git clone git://github.com/zsh-users/zsh-autosuggestions $ZSH_CUSTOM/plugins/zsh-autosuggestions
-- brew install zsh-syntax-highlighting
 - A terminal fetisj 
-
 
 Shell config
 ---------
