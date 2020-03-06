@@ -31,6 +31,9 @@ git clone https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/theme
 # Get zsh-autosuggestions
 git clone git://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 
+# Get zsh-nvm plugin
+git clone https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm
+
 # Install syntax highlighter
 brew install zsh-syntax-highlighting
 
