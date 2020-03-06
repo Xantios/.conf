@@ -22,6 +22,9 @@ cd
 git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 mv .zshrc .zshrc.org
 
+# Get Meslo Slashed font for powerline
+curl -L https://github.com/powerline/fonts/raw/master/Meslo%20Slashed/Meslo%20LG%20M%20Regular%20for%20Powerline.ttf --output ~/Library/Fonts/MesloSlashedRegularForPowerline.ttf
+
 # Get Powerlevel 10k
 git clone https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
 
