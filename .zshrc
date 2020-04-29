@@ -62,6 +62,9 @@ alias storm="pstorm ."  # Open current folder in php storm
 alias tmp="cd ~/temp" # I just use a temp dir to dump stuff in my home folder 
 alias notes="cd ~/notes" # I really should find a notes app i like one of these days. 
 
+# Redis
+alias redis="redis-server ~/.conf/.redis.conf"
+
 # MacOS being a dick
 alias dnsreset="sudo killall -HUP mDNSResponder" # Reload DNS on a Mac
 
