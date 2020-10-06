@@ -1,0 +1,11 @@
+set appRef to "Music"
+tell application "System Events" to (name of processes) contains appRef
+
+if application appRef is running then
+	tell application "Music"
+		set ExportName to current track's name
+		set ExportArtist to current track's artist
+		
+		return ExportName & " - " & ExportArtist
+	end tell
+end if
