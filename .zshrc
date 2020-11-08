@@ -97,6 +97,10 @@ if [ -f $HOME/.zshrc.local ]; then
     source $HOME/.zshrc.local
 fi
 
+# My terminal is dark! 
+alias hon="hue lights all \=100%"
+alias hoff="hue lights all \=0%"
+
 ##########################################################
 # Export some tokens and vars
 ##########################################################
@@ -108,9 +112,6 @@ fi
 
 # NVM 
 export NVM_DIR="$HOME/.nvm"
-
-# [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-# [ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
 
 # Switch over to zsh-nvm plugin
 # git clone https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm
