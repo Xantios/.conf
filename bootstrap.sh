@@ -15,6 +15,10 @@ if [ -z `which git` ]; then
 	exit 1
 fi
 
+if [ -z `which brew` ]; then
+	echo Please install Brew first (if running on a mac)
+fi
+
 # Jump to home dir
 cd
 
@@ -36,6 +40,9 @@ git clone https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-
 
 # Install syntax highlighter
 brew install zsh-syntax-highlighting
+
+# And autosuggestions
+brew install zsh-autosuggestions
 
 # Get my confs
 mv .conf .conf.bak

@@ -1,15 +1,13 @@
 # Path to your oh-my-zsh installation.
 export ZSH=${HOME}/.oh-my-zsh
 
-# Set name of the theme to load.
-
-# Not super fancy, but usefull
+# Fallback in case you dont need p10k
 #ZSH_THEME="af-magic" 
 
 # Full fancy
 ZSH_THEME=powerlevel10k/powerlevel10k
 
-# 9k specific mods
+# 10k specific mods / settings
 . $HOME/.conf/.powerlevel
 
 # Disable auto-update?
@@ -26,11 +24,13 @@ ENABLE_CORRECTION="false"
 # Pull in some plugins
 plugins=(git docker zsh-nvm zsh-autosuggestions)
 
-# Add zsh-autosuggestions to plugins array should work, but brew-dev on OS X 10.15 seems to have changed --something--
-# . /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# Docker Plugin has some stacking options
+# https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/docker
+zstyle ':completion:*:*:docker:*' option-stacking yes
+zstyle ':completion:*:*:docker-*:*' option-stacking yes
 
-# And add some syntax highlighting
-. /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# Add zsh-autosuggestions to plugins array should work, if you run in to problems ref it directly
+# . /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # We need to set editor because we depend on it in the next blocks
 export EDITOR='vim'
@@ -46,8 +46,7 @@ DEFAULT_USER=`whoami`
 # Export paths 
 ##########################################################
 export PATH=$PATH:~/.composer/vendor/bin    # Composer
-#export PATH=$PATH:/usr/local/mysql/bin      # MySQL
-export PATH=$PATH:/usr/local/opt/inetutils/libexec/gnubin # inet-utils (brew install inetutils)
+# export PATH=$PATH:/usr/local/opt/inetutils/libexec/gnubin # inet-utils (brew install inetutils)
 
 ##########################################################
 # Aliases 
@@ -84,10 +83,6 @@ alias proj=projfunc
 alias dockerize="~/Projects/current/dockerize/bin/console dockerize"
 # alias enter="php ~/enter.php $@" # Moved to a seperate repo, see github.com/xantios/docker-helper
 
-# Shoud fix this up to something somewhat decent
-#alias de="docker exec -ti "
-#alias enter="~/enter"
-
 # Source the init to start oh-my-zsh on spin-up
 source $ZSH/oh-my-zsh.sh
 
@@ -98,7 +93,7 @@ if [ -f $HOME/.zshrc.local ]; then
 fi
 
 # My terminal is dark! 
-alias hon="hue lights all \=100%"
+alias hon="hue lights all on ; hue lights all \=100%"
 alias hoff="hue lights all \=0%"
 
 ##########################################################
@@ -112,10 +107,6 @@ fi
 
 # NVM 
 export NVM_DIR="$HOME/.nvm"
-
-# Switch over to zsh-nvm plugin
-# git clone https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm
-# add add it to plugins ( plugins+=(zsh-nvm) )
 
 func projfunc() {
     cd ~/Projects/$@
@@ -141,4 +132,12 @@ func pass() {
     openssl rand -base64 24 | cut -d= -f1
 }
 
-export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
+# Get LAN ip
+func lan() {
+    ifconfig | grep 'inet ' | grep -v '127.0.0.1' | awk '{print $2}'
+}
+
+# Get WAN ip
+func wan() {
+    curl http://icanhazip.com
+}
