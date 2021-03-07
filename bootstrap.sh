@@ -16,7 +16,7 @@ if [ -z `which git` ]; then
 fi
 
 if [ -z `which brew` ]; then
-	echo Please install Brew first (if running on a mac)
+	echo Please install Brew first
 fi
 
 # Jump to home dir
