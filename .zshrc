@@ -46,7 +46,11 @@ DEFAULT_USER=`whoami`
 # Export paths 
 ##########################################################
 export PATH=$PATH:~/.composer/vendor/bin    # Composer
-# export PATH=$PATH:/usr/local/opt/inetutils/libexec/gnubin # inet-utils (brew install inetutils)
+export PATH=$PATH:/usr/local/opt/inetutils/libexec/gnubin # inet-utils (brew install inetutils)
+export PATH=/usr/local/sbin:$PATH
+
+# pkg-conf
+export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/Cellar/ffmpeg/4.3.1-with-options_6/lib/pkgconfig
 
 ##########################################################
 # Aliases 
@@ -55,7 +59,10 @@ export PATH=$PATH:~/.composer/vendor/bin    # Composer
 # PHP Dev stuff
 alias cda="composer dumpautoload" 
 alias art="php artisan "
-alias storm="pstorm ."  # Open current folder in php storm
+alias sart="sail artisan "
+alias storm="phpstorm ."  # Open current folder in php storm
+alias pstorm="phpstorm " # musle memmory
+alias sail="./vendor/bin/sail "
 
 # General Dev stuff ( General Dev-stuff , Salutes ! )
 alias tmp="cd ~/temp" # I just use a temp dir to dump stuff in my home folder 
@@ -67,9 +74,6 @@ alias redis="redis-server ~/.conf/.redis.conf"
 # MacOS being a dick
 alias dnsreset="sudo killall -HUP mDNSResponder" # Reload DNS on a Mac
 
-# Me being lazy
-alias pwgen=pass # or just use pass 
-
 # Shell hacking stuff
 alias rehash='. ~/.zshrc' # Reload ZSH
 
@@ -80,7 +84,9 @@ alias vihost='sudo vi /etc/hosts' # Edit hostfile
 alias proj=projfunc
 
 # Docker stuff
-alias dockerize="~/Projects/current/dockerize/bin/console dockerize"
+# I do to much docker stuff, so please checkout github.com/xantios/ for docker related stuff
+
+# alias dockerize="~/Projects/current/dockerize/bin/console dockerize"
 # alias enter="php ~/enter.php $@" # Moved to a seperate repo, see github.com/xantios/docker-helper
 
 # Source the init to start oh-my-zsh on spin-up
@@ -90,6 +96,11 @@ source $ZSH/oh-my-zsh.sh
 # or do some local addons if needed
 if [ -f $HOME/.zshrc.local ]; then
     source $HOME/.zshrc.local
+fi
+
+# Alt path
+if [ -f $HOME/.conf/.zshrc.local ]; then
+    source $HOME/.conf/.zshrc.local
 fi
 
 # My terminal is dark! 
@@ -107,6 +118,9 @@ fi
 
 # NVM 
 export NVM_DIR="$HOME/.nvm"
+
+## Some small functions, you can call them just like any regular bash/zsh command
+## eg: pass <enter> will give a random password
 
 func projfunc() {
     cd ~/Projects/$@
