@@ -42,6 +42,10 @@ export LANG=en_US.UTF-8
 # Pull current user to var
 DEFAULT_USER=`whoami`
 
+# Dokku conf
+export DOKKU_HOST=molly
+export DOKKU_PORT=22
+
 ##########################################################
 # Export paths 
 ##########################################################
@@ -88,6 +92,8 @@ alias proj=projfunc
 
 # alias dockerize="~/Projects/current/dockerize/bin/console dockerize"
 # alias enter="php ~/enter.php $@" # Moved to a seperate repo, see github.com/xantios/docker-helper
+
+alias dps="docker ps -a --format \"{{.ID}}\t{{.State}}\t{{.Names}}\""
 
 # Source the init to start oh-my-zsh on spin-up
 source $ZSH/oh-my-zsh.sh
