@@ -96,6 +96,8 @@ alias proj=projfunc
 # alias enter="php ~/enter.php $@" # Moved to a seperate repo, see github.com/xantios/docker-helper
 
 alias dps="docker ps -a --format \"{{.ID}}\t{{.State}}\t{{.Names}}\""
+alias dpr="dps | grep -i running"
+alias des="docker exec -ti "
 
 # Source the init to start oh-my-zsh on spin-up
 source $ZSH/oh-my-zsh.sh
