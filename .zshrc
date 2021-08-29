@@ -78,6 +78,7 @@ alias redis="redis-server ~/.conf/.redis.conf"
 
 # MacOS being a dick
 alias dnsreset="sudo killall -HUP mDNSResponder" # Reload DNS on a Mac
+alias screenshotdir="defaults write com.apple.screencapture location /${HOME}/screenshots"
 
 # Shell hacking stuff
 alias rehash='. ~/.zshrc' # Reload ZSH
