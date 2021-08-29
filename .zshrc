@@ -51,6 +51,7 @@ export DOKKU_PORT=22
 ##########################################################
 export PATH=$PATH:~/.composer/vendor/bin    # Composer
 export PATH=$PATH:/usr/local/opt/inetutils/libexec/gnubin # inet-utils (brew install inetutils)
+export PATH=$PATH:/usr/local/go/bin # Go
 export PATH=/usr/local/sbin:$PATH
 
 # pkg-conf
