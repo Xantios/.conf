@@ -24,6 +24,9 @@ ENABLE_CORRECTION="false"
 # Pull in some plugins
 plugins=(git docker zsh-nvm zsh-autosuggestions)
 
+# Git set global ignore
+git config --global core.excludesFile '~/.conf/.gitignore'
+
 # Docker Plugin has some stacking options
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/docker
 zstyle ':completion:*:*:docker:*' option-stacking yes
