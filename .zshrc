@@ -145,6 +145,12 @@ export NVM_DIR="$HOME/.nvm"
 ## Some small functions, you can call them just like any regular bash/zsh command
 ## eg: pass <enter> will give a random password
 
+# Little benchmark function
+func bench() {
+    shell=${1-$SHELL}
+    for  i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
+}
+
 func projfunc() {
     cd ~/Projects/$@
 }
