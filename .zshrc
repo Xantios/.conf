@@ -93,7 +93,8 @@ alias dnsreset="sudo killall -HUP mDNSResponder" # Reload DNS on a Mac
 alias screenshotdir="defaults write com.apple.screencapture location /${HOME}/screenshots"
 
 # Shell hacking stuff
-alias rehash='. ~/.zshrc' # Reload ZSH
+#alias rehash='. ~/.zshrc' # Reload ZSH
+alias rehash="exec zsh" # session fix
 
 alias zshconf='$EDITOR ~/.zshrc' # Edit zshrc
 alias vimconf='$EDITOR ~/.vimrc' # Edit vimrc
