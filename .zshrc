@@ -21,6 +21,15 @@ unsetopt correct_all
 unsetopt correct
 ENABLE_CORRECTION="false"
 
+# Permission checking is broken and then some. 
+# Remove this when the permission checks are fixed
+ZSH_DISABLE_COMPFIX=true
+
+# NVM is a nice tool, but it slows down loading of the shell by 500ms+
+# We can however lazy load it instad of eager loading
+export NVM_LAZY_LOAD=true
+export NVM_COMPLETION=true
+
 # Pull in some plugins
 plugins=(git docker zsh-nvm zsh-autosuggestions)
 
