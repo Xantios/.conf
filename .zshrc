@@ -64,7 +64,10 @@ export DOKKU_PORT=22
 export PATH=$PATH:~/.composer/vendor/bin    # Composer
 export PATH=$PATH:/usr/local/opt/inetutils/libexec/gnubin # inet-utils (brew install inetutils)
 export PATH=$PATH:/usr/local/go/bin # Go
+export PATH=$PATH:~/go/bin # Go packages
+export PATH=/opt/homebrew/bin:$PATH # New homebrew (on M1)
 export PATH=/usr/local/sbin:$PATH
+export PATH=$PATH:/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/
 
 # pkg-conf
 export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/Cellar/ffmpeg/4.3.1-with-options_6/lib/pkgconfig
