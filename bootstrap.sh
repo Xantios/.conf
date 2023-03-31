@@ -23,14 +23,13 @@ fi
 cd
 
 # Get oh-my-zsh up and running
-git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
-mv .zshrc .zshrc.org
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # Get Meslo Slashed font for powerline
 curl -L https://github.com/powerline/fonts/raw/master/Meslo%20Slashed/Meslo%20LG%20M%20Regular%20for%20Powerline.ttf --output ~/Library/Fonts/MesloSlashedRegularForPowerline.ttf
 
 # Get Powerlevel 10k
-git clone https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
+git clone  --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
 
 # Get zsh-autosuggestions
 git clone git://github.com/zsh-users/zsh-autosuggestions ~/.oh-my-zsh/custom/plugins/zsh-autosuggestions
