@@ -114,7 +114,8 @@ alias proj=projfunc
 alias dps="docker ps -a --format \"{{.ID}}\t{{.State}}\t{{.Names}}\""
 alias dpr="dps | grep -i running"
 alias des="docker exec -ti "
-
+alias dl="docker logs -f "
+alias docker-compose="echo FOEIKO!"
 # Source the init to start oh-my-zsh on spin-up
 source $ZSH/oh-my-zsh.sh
 
