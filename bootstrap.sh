@@ -1,7 +1,7 @@
 #!/bin/bash
 # Using bash just to check if ZSH is installed
 
-#@TODO: Check enviroment
+#@TODO: Check environment
 
 # Check if ZSH is installed
 if [ -z `which zsh` ]; then
