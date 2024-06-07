@@ -17,8 +17,9 @@ ENABLE_CORRECTION="false"
 export NVM_LAZY_LOAD=true
 export NVM_COMPLETION=true
 
-# Pull in some plugins
-plugins=(git docker zsh-nvm zsh-autosuggestions)
+# Load docker completion
+autoload -Uz compinit && compinit
+source $HOME/.conf/docker-completion.sh
 
 # Git set global ignore
 git config --global core.excludesFile '~/.conf/.gitignore'
@@ -30,6 +31,7 @@ zstyle ':completion:*:*:docker-*:*' option-stacking yes
 
 # Add zsh-autosuggestions to plugins array should work, if you run in to problems ref it directly
 # . /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $HOME/.conf/custom/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # We need to set editor because we depend on it in the next blocks
 export EDITOR='vim'
@@ -77,7 +79,7 @@ alias sail="./vendor/bin/sail "
 
 # General Dev stuff ( General Dev-stuff , Salutes ! )
 alias tmp="cd ~/temp" # I just use a temp dir to dump stuff in my home folder 
-alias notes="cd ~/notes" # I really should find a notes app i like one of these days. 
+alias notes="cd ~/notes" # I really should find a notes app i like one of these days.
 
 # Redis
 alias redis="redis-server ~/.conf/.redis.conf"
@@ -106,7 +108,6 @@ export ANDROID_HOME="/opt/homebrew/share/android-commandlinetools"
 # alias enter="php ~/enter.php $@" # Moved to a seperate repo, see github.com/xantios/docker-helper
 
 # replace by php script
-# alias dps="docker ps -a --format \"{{.ID}}\t{{.State}}\t{{.Status}}\t\t\t{{.Names}}\""
 alias dps="php ~/.conf/dps.php"
 
 alias dpr="dps | grep -i running"
