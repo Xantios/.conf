@@ -18,7 +18,8 @@ blocks:
         foreground: "#ffffff"
         background: "#61AFEF"
         properties:
-          style: folder
+          max_depth: 4
+          style: agnoster_short
 
       - type: git
         style: powerline
