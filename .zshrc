@@ -1,14 +1,5 @@
-# Path to your oh-my-zsh installation.
-export ZSH=${HOME}/.oh-my-zsh
-
-# Fallback in case you dont need p10k
-#ZSH_THEME="af-magic" 
-
-# Full fancy
-ZSH_THEME=powerlevel10k/powerlevel10k
-
-# 10k specific mods / settings
-. $HOME/.conf/.powerlevel
+# Load oh-my-posh
+eval "$(oh-my-posh init zsh --config $HOME/.conf/posh.yml)"
 
 # Disable auto-update?
 DISABLE_AUTO_UPDATE="false"
@@ -21,28 +12,26 @@ unsetopt correct_all
 unsetopt correct
 ENABLE_CORRECTION="false"
 
-# Permission checking is broken and then some. 
-# Remove this when the permission checks are fixed
-ZSH_DISABLE_COMPFIX=true
-
 # NVM is a nice tool, but it slows down loading of the shell by 500ms+
 # We can however lazy load it instad of eager loading
 export NVM_LAZY_LOAD=true
 export NVM_COMPLETION=true
 
-# Pull in some plugins
-plugins=(git docker zsh-nvm zsh-autosuggestions)
+# Load docker completion
+autoload -Uz compinit && compinit
+source $HOME/.conf/docker-completion.sh
 
 # Git set global ignore
 git config --global core.excludesFile '~/.conf/.gitignore'
 
-# Docker Plugin has some stacking options
+# Docker has some stacking options
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/docker
 zstyle ':completion:*:*:docker:*' option-stacking yes
 zstyle ':completion:*:*:docker-*:*' option-stacking yes
 
 # Add zsh-autosuggestions to plugins array should work, if you run in to problems ref it directly
 # . /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $HOME/.conf/custom/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # We need to set editor because we depend on it in the next blocks
 export EDITOR='vim'
@@ -90,7 +79,7 @@ alias sail="./vendor/bin/sail "
 
 # General Dev stuff ( General Dev-stuff , Salutes ! )
 alias tmp="cd ~/temp" # I just use a temp dir to dump stuff in my home folder 
-alias notes="cd ~/notes" # I really should find a notes app i like one of these days. 
+alias notes="cd ~/notes" # I really should find a notes app i like one of these days.
 
 # Redis
 alias redis="redis-server ~/.conf/.redis.conf"
@@ -119,30 +108,12 @@ export ANDROID_HOME="/opt/homebrew/share/android-commandlinetools"
 # alias enter="php ~/enter.php $@" # Moved to a seperate repo, see github.com/xantios/docker-helper
 
 # replace by php script
-# alias dps="docker ps -a --format \"{{.ID}}\t{{.State}}\t{{.Status}}\t\t\t{{.Names}}\""
 alias dps="php ~/.conf/dps.php"
 
 alias dpr="dps | grep -i running"
 alias des="docker exec -ti "
 alias dl="docker logs -f "
 alias docker-compose="echo FOEIKO!"
-# Source the init to start oh-my-zsh on spin-up
-source $ZSH/oh-my-zsh.sh
-
-# If you have .zshrc.local file we source it so you can put some passwords in enviroment 
-# or do some local addons if needed
-if [ -f $HOME/.zshrc.local ]; then
-    source $HOME/.zshrc.local
-fi
-
-# Alt path
-if [ -f $HOME/.conf/.zshrc.local ]; then
-    source $HOME/.conf/.zshrc.local
-fi
-
-# My terminal is dark! 
-alias hon="hue lights all on ; hue lights all \=100%"
-alias hoff="hue lights all \=0%"
 
 ##########################################################
 # Export some tokens and vars
@@ -180,8 +151,7 @@ func showhidden()
 func hidehidden()
 {
     defaults write com.apple.finder AppleShowAllFiles FALSE
-    echo killall Finder
-    
+    echo killall Finder   
 }
 
 # Generate a random pass
