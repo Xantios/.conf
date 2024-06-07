@@ -118,7 +118,10 @@ export ANDROID_HOME="/opt/homebrew/share/android-commandlinetools"
 # alias dockerize="~/Projects/current/dockerize/bin/console dockerize"
 # alias enter="php ~/enter.php $@" # Moved to a seperate repo, see github.com/xantios/docker-helper
 
-alias dps="docker ps -a --format \"{{.ID}}\t{{.State}}\t{{.Names}}\""
+# replace by php script
+# alias dps="docker ps -a --format \"{{.ID}}\t{{.State}}\t{{.Status}}\t\t\t{{.Names}}\""
+alias dps="php ~/.conf/dps.php"
+
 alias dpr="dps | grep -i running"
 alias des="docker exec -ti "
 alias dl="docker logs -f "
