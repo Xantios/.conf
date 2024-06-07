@@ -58,6 +58,9 @@ DEFAULT_USER=`whoami`
 export DOKKU_HOST=molly
 export DOKKU_PORT=22
 
+# Lest stop wasting metirc tons of time 
+export HOMEBREW_NO_AUTO_UPDATE=true
+
 ##########################################################
 # Export paths 
 ##########################################################
@@ -65,10 +68,11 @@ export PATH=$PATH:~/.composer/vendor/bin    # Composer
 export PATH=$PATH:/usr/local/opt/inetutils/libexec/gnubin # inet-utils (brew install inetutils)
 export PATH=$PATH:/usr/local/go/bin # Go
 export PATH=$PATH:~/go/bin # Go packages
+export PATH=$PATH:~/bin/ # bin folder in home 
 export PATH=/opt/homebrew/bin:$PATH # New homebrew (on M1)
 export PATH=/usr/local/sbin:$PATH
 export PATH=$PATH:/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/
-
+export PATH=$PATH:/opt/homebrew/Cellar/qemu/8.2.0/bin
 # pkg-conf
 export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/Cellar/ffmpeg/4.3.1-with-options_6/lib/pkgconfig
 
@@ -104,6 +108,9 @@ alias vimconf='$EDITOR ~/.vimrc' # Edit vimrc
 alias vihost='sudo vi /etc/hosts' # Edit hostfile
 
 alias proj=projfunc
+
+# Android hacking 
+export ANDROID_HOME="/opt/homebrew/share/android-commandlinetools"
 
 # Docker stuff
 # I do to much docker stuff, so please checkout github.com/xantios/ for docker related stuff
