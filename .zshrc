@@ -1,6 +1,20 @@
 # Load oh-my-posh
 eval "$(oh-my-posh init zsh --config $HOME/.conf/posh.yml)"
 
+# Plugin manager
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+source "${ZINIT_HOME}/zinit.zsh"
+
+# Install plugins
+# light is alias for load without debug symbols
+zinit light zsh-users/zsh-autosuggestions
+zinit light zdharma-continuum/fast-syntax-highlighting
+
+# Use Oh-my-zsh plugins
+zinit snippet OMZP::git
+
 # Disable auto-update?
 DISABLE_AUTO_UPDATE="false"
 
@@ -11,11 +25,6 @@ DISABLE_UPDATE_PROMPT=true
 unsetopt correct_all
 unsetopt correct
 ENABLE_CORRECTION="false"
-
-# NVM is a nice tool, but it slows down loading of the shell by 500ms+
-# We can however lazy load it instad of eager loading
-export NVM_LAZY_LOAD=true
-export NVM_COMPLETION=true
 
 # Load docker completion
 autoload -Uz compinit && compinit
@@ -28,10 +37,6 @@ git config --global core.excludesFile '~/.conf/.gitignore'
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/docker
 zstyle ':completion:*:*:docker:*' option-stacking yes
 zstyle ':completion:*:*:docker-*:*' option-stacking yes
-
-# Add zsh-autosuggestions to plugins array should work, if you run in to problems ref it directly
-# . /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $HOME/.conf/custom/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # We need to set editor because we depend on it in the next blocks
 export EDITOR='vim'
@@ -168,3 +173,25 @@ func lan() {
 func wan() {
     curl http://icanhazip.com
 }
+
+### Added by Zinit's installer
+if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
+    print -P "%F{33} %F{220}Installing %F{33}ZDHARMA-CONTINUUM%F{220} Initiative Plugin Manager (%F{33}zdharma-continuum/zinit%F{220})…%f"
+    command mkdir -p "$HOME/.local/share/zinit" && command chmod g-rwX "$HOME/.local/share/zinit"
+    command git clone https://github.com/zdharma-continuum/zinit "$HOME/.local/share/zinit/zinit.git" && \
+        print -P "%F{33} %F{34}Installation successful.%f%b" || \
+        print -P "%F{160} The clone has failed.%f%b"
+fi
+
+source "$HOME/.local/share/zinit/zinit.git/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
+
