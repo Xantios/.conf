@@ -57,6 +57,21 @@ docker completion zsh > $HOME/.conf/docker-completion.sh
 mv .conf .conf.bak
 git clone https://github.com/Xantios/.conf.git
 
+# Install fzf
+if [ $(uname) == "Darwin" ]; then
+    brew install fzf
+fi
+
+if [ $(uname) == "Linux" ]; then
+    if [ $(cat /etc/lsb-release | grep -i ID | cut -d= -f2) == "Ubuntu" ]; then
+        apt install fzf
+    fi
+
+    if [ $(cat /etc/lsb-release | grep -i ID | cut -d= -f2) == "Debian" ]; then
+        apt install fzf
+    fi
+fi
+
 # Link stuff up :-)
 ln -s .conf/.zshrc ./.zshrc
 ln -s .conf/.vimrc ./.vimrc
