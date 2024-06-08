@@ -43,8 +43,13 @@ git config --global core.excludesFile '~/.conf/.gitignore'
 zstyle ':completion:*:*:docker:*' option-stacking yes
 zstyle ':completion:*:*:docker-*:*' option-stacking yes
 
+# Completion styling
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+
 # We need to set editor because we depend on it in the next blocks
-export EDITOR='vim'
+export EDITOR='nvim'
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
@@ -58,7 +63,8 @@ export DOKKU_HOST=molly
 export DOKKU_PORT=22
 
 # Lest stop wasting metirc tons of time 
-export HOMEBREW_NO_AUTO_UPDATE=true
+export HOMEBREW_NO_AUTO_UPDATE=1
+export HOMEBREW_NO_ANALYTICS=1
 
 ##########################################################
 # Export paths 
@@ -187,3 +193,4 @@ zinit light-mode for \
     zdharma-continuum/zinit-annex-patch-dl \
     zdharma-continuum/zinit-annex-rust
 
+### End of Zinit's installer chunk
