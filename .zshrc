@@ -11,6 +11,7 @@ source "${ZINIT_HOME}/zinit.zsh"
 # light is alias for load without debug symbols
 zinit light zsh-users/zsh-autosuggestions
 zinit light zdharma-continuum/fast-syntax-highlighting
+zinit light zsh-users/zsh-completions
 
 # Use Oh-my-zsh plugins
 zinit snippet OMZP::git
