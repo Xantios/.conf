@@ -77,3 +77,5 @@ ln -s .conf/.zshrc ./.zshrc
 ln -s .conf/.vimrc ./.vimrc
 ln -s .conf/.vim ./.vim
 ln -s .conf/.tmux.conf ./.tmux.conf
+mkdir -p $HOME/.config/alacritty
+ln -s ./conf/alacritty/alacritty.toml $HOME/.config/alacritty/alacritty.toml

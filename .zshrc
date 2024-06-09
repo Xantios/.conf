@@ -114,6 +114,8 @@ alias vihost='sudo vi /etc/hosts' # Edit hostfile
 
 alias proj=projfunc
 
+alias vim=nvim
+
 # Android hacking 
 export ANDROID_HOME="/opt/homebrew/share/android-commandlinetools"
 

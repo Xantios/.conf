@@ -1,0 +1,23 @@
+# See: https://alacritty.org/config-alacritty.html
+live_config_reload = true
+
+[font]
+normal = { family = "MesloLGM Nerd Font", style = "Regular" }
+size = 12
+
+[keyboard]
+bindings = [
+  # Mac specific movement 
+  { key = "Left",  mods = "Alt",     chars = "\u001bB"   },
+  { key = "Right", mods = "Alt",     chars = "\u001bF"   },
+  { key = "Left",  mods = "Command", chars = "\u001bOH"  },
+  { key = "Right", mods = "Command", chars =  "\u001bOF" },
+  { key = "Back",  mods = "Command", chars = "\u0015"    },
+  # Give me freaking tabs
+  { key = "t", mods = "Command", action = "CreateNewTab" },
+  { key = "Tab", mods="Control", action = "SelectNextTab"}
+]
+
+[window]
+opacity = 0.85
+blur = true
