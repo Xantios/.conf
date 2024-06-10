@@ -62,6 +62,9 @@ DEFAULT_USER=`whoami`
 export DOKKU_HOST=molly
 export DOKKU_PORT=22
 
+# Set LS colors 
+export CLICOLOR=1
+
 # Lest stop wasting metirc tons of time 
 export HOMEBREW_NO_AUTO_UPDATE=1
 export HOMEBREW_NO_ANALYTICS=1
@@ -132,6 +135,9 @@ alias dpr="dps | grep -i running"
 alias des="docker exec -ti "
 alias dl="docker logs -f "
 alias docker-compose="echo FOEIKO!"
+
+# Fix for alacritty not being supported on (most?) linux
+alias ssh="TERM=xterm-256color $(which ssh)"
 
 ##########################################################
 # Export some tokens and vars
