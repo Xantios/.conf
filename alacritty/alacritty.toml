@@ -15,7 +15,8 @@ bindings = [
   { key = "Back",  mods = "Command", chars = "\u0015"    },
   # Give me freaking tabs
   { key = "t", mods = "Command", action = "CreateNewTab" },
-  { key = "Tab", mods="Control", action = "SelectNextTab"}
+  { key = "Tab", mods="Control", action = "SelectNextTab"},
+  { key = "Tab", mods="Shift|Control", action="SelectPreviousTab"}
 ]
 
 [window]
