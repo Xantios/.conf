@@ -1,14 +1,24 @@
-# Path to your oh-my-zsh installation.
-export ZSH=${HOME}/.oh-my-zsh
+# Load oh-my-posh
+eval "$(oh-my-posh init zsh --config $HOME/.conf/posh.yml)"
 
-# Fallback in case you dont need p10k
-#ZSH_THEME="af-magic" 
+# Plugin manager
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+[ ! -d $ZINIT_HOME ] && mkdir -p "$(dirname $ZINIT_HOME)"
+[ ! -d $ZINIT_HOME/.git ] && git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+source "${ZINIT_HOME}/zinit.zsh"
 
-# Full fancy
-ZSH_THEME=powerlevel10k/powerlevel10k
+# Load fzf 
+eval "$(fzf --zsh)"
 
-# 10k specific mods / settings
-. $HOME/.conf/.powerlevel
+# Install plugins
+# light is alias for load without debug symbols
+zinit light zsh-users/zsh-autosuggestions
+zinit light zdharma-continuum/fast-syntax-highlighting
+zinit light zsh-users/zsh-completions
+zinit light Aloxaf/fzf-tab
+
+# Use Oh-my-zsh plugins
+zinit snippet OMZP::git
 
 # Disable auto-update?
 DISABLE_AUTO_UPDATE="false"
@@ -21,31 +31,25 @@ unsetopt correct_all
 unsetopt correct
 ENABLE_CORRECTION="false"
 
-# Permission checking is broken and then some. 
-# Remove this when the permission checks are fixed
-ZSH_DISABLE_COMPFIX=true
-
-# NVM is a nice tool, but it slows down loading of the shell by 500ms+
-# We can however lazy load it instad of eager loading
-export NVM_LAZY_LOAD=true
-export NVM_COMPLETION=true
-
-# Pull in some plugins
-plugins=(git docker zsh-nvm zsh-autosuggestions)
+# Load docker completion
+autoload -Uz compinit && compinit
+source $HOME/.conf/docker-completion.sh
 
 # Git set global ignore
 git config --global core.excludesFile '~/.conf/.gitignore'
 
-# Docker Plugin has some stacking options
+# Docker has some stacking options
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/docker
 zstyle ':completion:*:*:docker:*' option-stacking yes
 zstyle ':completion:*:*:docker-*:*' option-stacking yes
 
-# Add zsh-autosuggestions to plugins array should work, if you run in to problems ref it directly
-# . /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# Completion styling
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+zstyle ':completion:*' menu no
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 
 # We need to set editor because we depend on it in the next blocks
-export EDITOR='vim'
+export EDITOR='nvim'
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
@@ -58,6 +62,13 @@ DEFAULT_USER=`whoami`
 export DOKKU_HOST=molly
 export DOKKU_PORT=22
 
+# Set LS colors 
+export CLICOLOR=1
+
+# Lest stop wasting metirc tons of time 
+export HOMEBREW_NO_AUTO_UPDATE=1
+export HOMEBREW_NO_ANALYTICS=1
+
 ##########################################################
 # Export paths 
 ##########################################################
@@ -65,11 +76,12 @@ export PATH=$PATH:~/.composer/vendor/bin    # Composer
 export PATH=$PATH:/usr/local/opt/inetutils/libexec/gnubin # inet-utils (brew install inetutils)
 export PATH=$PATH:/usr/local/go/bin # Go
 export PATH=$PATH:~/go/bin # Go packages
+export PATH=$PATH:~/bin/ # bin folder in home 
 export PATH=/opt/homebrew/bin:$PATH # New homebrew (on M1)
 export PATH=/Applications/GoLand.app/Contents/MacOS:$PATH # Goland
 export PATH=/usr/local/sbin:$PATH
 export PATH=$PATH:/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/
-
+export PATH=$PATH:/opt/homebrew/Cellar/qemu/8.2.0/bin
 # pkg-conf
 export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/Cellar/ffmpeg/4.3.1-with-options_6/lib/pkgconfig
 
@@ -90,7 +102,7 @@ alias sail="./vendor/bin/sail "
 
 # General Dev stuff ( General Dev-stuff , Salutes ! )
 alias tmp="cd ~/temp" # I just use a temp dir to dump stuff in my home folder 
-alias notes="cd ~/notes" # I really should find a notes app i like one of these days. 
+alias notes="cd ~/notes" # I really should find a notes app i like one of these days.
 
 # Redis
 alias redis="redis-server ~/.conf/.redis.conf"
@@ -109,36 +121,30 @@ alias vihost='sudo vi /etc/hosts' # Edit hostfile
 
 alias proj=projfunc
 
+<<<<<<< HEAD
+=======
+alias vim=nvim
+
+# Android hacking 
+export ANDROID_HOME="/opt/homebrew/share/android-commandlinetools"
+
+# Docker stuff
+>>>>>>> 07a65b93e33a0343e234ee898691067373fcdf38
 # I do to much docker stuff, so please checkout github.com/xantios/ for docker related stuff
 
 # alias dockerize="~/Projects/current/dockerize/bin/console dockerize"
 # alias enter="php ~/enter.php $@" # Moved to a seperate repo, see github.com/xantios/docker-helper
 
 # replace by php script
-# alias dps="docker ps -a --format \"{{.ID}}\t{{.State}}\t{{.Status}}\t\t\t{{.Names}}\""
 alias dps="php ~/.conf/dps.php"
 
 alias dpr="dps | grep -i running"
 alias des="docker exec -ti "
 alias dl="docker logs -f "
 alias docker-compose="echo FOEIKO!"
-# Source the init to start oh-my-zsh on spin-up
-source $ZSH/oh-my-zsh.sh
 
-# If you have .zshrc.local file we source it so you can put some passwords in enviroment 
-# or do some local addons if needed
-if [ -f $HOME/.zshrc.local ]; then
-    source $HOME/.zshrc.local
-fi
-
-# Alt path
-if [ -f $HOME/.conf/.zshrc.local ]; then
-    source $HOME/.conf/.zshrc.local
-fi
-
-# My terminal is dark! 
-alias hon="hue lights all on ; hue lights all \=100%"
-alias hoff="hue lights all \=0%"
+# Fix for alacritty not being supported on (most?) linux
+alias ssh="TERM=xterm-256color $(which ssh)"
 
 ##########################################################
 # Export some tokens and vars
@@ -176,8 +182,7 @@ func showhidden()
 func hidehidden()
 {
     defaults write com.apple.finder AppleShowAllFiles FALSE
-    echo killall Finder
-    
+    echo killall Finder   
 }
 
 # Generate a random pass
@@ -194,3 +199,13 @@ func lan() {
 func wan() {
     curl http://icanhazip.com
 }
+
+# Load a few important annexes, without Turbo
+# (this is currently required for annexes)
+zinit light-mode for \
+    zdharma-continuum/zinit-annex-as-monitor \
+    zdharma-continuum/zinit-annex-bin-gem-node \
+    zdharma-continuum/zinit-annex-patch-dl \
+    zdharma-continuum/zinit-annex-rust
+
+### End of Zinit's installer chunk
