@@ -120,16 +120,12 @@ alias vimconf='$EDITOR ~/.vimrc' # Edit vimrc
 alias vihost='sudo vi /etc/hosts' # Edit hostfile
 
 alias proj=projfunc
-
-<<<<<<< HEAD
-=======
 alias vim=nvim
 
 # Android hacking 
 export ANDROID_HOME="/opt/homebrew/share/android-commandlinetools"
 
 # Docker stuff
->>>>>>> 07a65b93e33a0343e234ee898691067373fcdf38
 # I do to much docker stuff, so please checkout github.com/xantios/ for docker related stuff
 
 # alias dockerize="~/Projects/current/dockerize/bin/console dockerize"
