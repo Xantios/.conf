@@ -66,6 +66,7 @@ export PATH=$PATH:/usr/local/opt/inetutils/libexec/gnubin # inet-utils (brew ins
 export PATH=$PATH:/usr/local/go/bin # Go
 export PATH=$PATH:~/go/bin # Go packages
 export PATH=/opt/homebrew/bin:$PATH # New homebrew (on M1)
+export PATH=/Applications/GoLand.app/Contents/MacOS:$PATH # Goland
 export PATH=/usr/local/sbin:$PATH
 export PATH=$PATH:/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/
 
@@ -75,6 +76,9 @@ export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/Cellar/ffmpeg/4.3.1-with-opti
 ##########################################################
 # Aliases 
 ##########################################################
+
+# Go dev stuff
+alias gadget="go vet ./... ; gofumpt -w -l ." 
 
 # PHP Dev stuff
 alias cda="composer dumpautoload" 
@@ -105,7 +109,6 @@ alias vihost='sudo vi /etc/hosts' # Edit hostfile
 
 alias proj=projfunc
 
-# Docker stuff
 # I do to much docker stuff, so please checkout github.com/xantios/ for docker related stuff
 
 # alias dockerize="~/Projects/current/dockerize/bin/console dockerize"
