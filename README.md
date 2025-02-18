@@ -11,6 +11,8 @@ Copy/paste install :-)
 Dependencies
 ---------
 - Zsh
+- zip/unzip if you need to install oh-my-posh
+- [oh-my-posh](https://ohmyposh.dev/docs/installation/linux)
 - A terminal fetisj
 
 Shell config
